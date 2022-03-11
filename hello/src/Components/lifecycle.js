@@ -8,8 +8,13 @@ constructor(props){
     console.log('1-constructor');
 }
 
-static getDerivedStaterFomProps(){
-    console.log('2-getDerivedStateFromProps')
+static getDerivedStaterFomProps(props, state){
+    console.log('2-getDerivedStateFromProps');
+    if(state.name=== 'Ron'){
+        return {
+            name: 'MilHouse'
+        }
+    }
     return null;
  }
 
@@ -20,10 +25,41 @@ componentDidMount(){
 componentWillUnmount(){
     console.log('5-componentWillUnmount')
 }
+
+shouldComponentUpdate(nextProps, nextState){
+    
+if(nextState.name ==='Steve'){
+    return false
+}
+
+ 
+
+    return true
+
+
+}
+
+getSnapshotBeforeUpdate(prevProps,prevState){
+    let age=20;
+    return age;
+
+
+}
+componentDidUpdate(prevProps, prevState,snapshot){
+    console.log('x-componentDidUpdate')
+    //console.log(prevState);
+    //console.log(this.state)
+   // console.log(snapshot)
+
+}
+
+
     render(){
         console.log('3-render')
         return(
+
             <div>
+            <div>{this.state.name}</div>
             <div onClick={()=> this.setState({name:'Ron'})}>
             change name
             
